@@ -32,30 +32,30 @@ class I4004:
                 self.acc = self.program[self.pc + 1]
                 self.pc += 2
 
-            elif opcode == 0xA4: # Загрузка числа в регистр B
-                self.rB = self.program[self.pc + 1]
+            elif opcode == 0xA4: # Загрузка числа в регистр 0
+                self.rr0 = self.program[self.pc + 1]
                 self.pc += 2
 
             elif opcode == 0x58: # Сложение
-                self.acc += self.rB
+                self.acc += self.rr0
                 self.pc += 1
                 if self.acc > 15:
                     self.acc = 15
-                    print("")
+                    print("Вы не можете получить число выше 15!")
 
             elif opcode == 0x29: # Вычитание
-                self.acc -= self.rB
+                self.acc -= self.rr0
                 self.pc += 1
                 if self.acc < 0:
                     self.acc = 0
-                    print("Вы не можете получить число выше 15!")
+                    print("Вы не можете получить число ниже 0!")
 
             elif opcode == 0x16: # Логическая операция И
-                self.acc &= self.rB
+                self.acc &= self.rr0
                 self.pc += 1
 
             elif opcode == 0x08: # Логическая операция ИЛИ
-                self.acc | self.rB
+                self.acc | self.rr0
                 self.pc += 1
 
             elif opcode == 0xD0: # Сохранение результата в памяти
