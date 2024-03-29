@@ -1,4 +1,4 @@
-<p align="center"><img src="https://media.discordapp.net/attachments/1176829600249163806/1176829635464540231/4004.png" width="360"></p>
+<p align="center"><img src="https://github.com/YuraFX/i4004-py/blob/main/images/4004.png?raw=true" width="360"></p>
 <h1 align="center">Эмулятор Intel 4004 с очень урезанным функционалом</h1>
 
 ## Вступление
