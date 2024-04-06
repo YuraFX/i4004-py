@@ -1,64 +1,61 @@
 <p align="center"><img src="https://github.com/YuraFX/i4004-py/blob/main/images/4004.png?raw=true" width="360"></p>
-<h1 align="center">Эмулятор Intel 4004 с очень урезанным функционалом</h1>
+<h1 align="center">Intel 4004 emulator with very reduced functionality</h1>
 
-## Вступление
+## Introduction
 
-В сентябре этого года я решил записаться на Код будущего, дабы получить знания по языку Python. Увы, спустя очень длительный период (до октября), 
-после заполнения всех документов и т.п. нам сообщают, что из-за двух каких-то, извиняюсь за выражение, дебилов, которые что-то и где-то не успели 
-вовремя заполнить и сдать, пришлось свернуть эту программу в моём техникуме. Я не особо расстроился, наоборот, это даже дало мне хороший толчок 
-для изучения данного языка программирования самостоятельно дома, как я и делал со всеми предыдущими языками :) Последние мои проекты представляли 
-собой видеоигры, поэтому в этот раз я решил написать что-то посерьёзнее, а именно эмулятор CPU, конкретно [Intel 4004](https://ru.wikipedia.org/wiki/Intel_4004) с очень урезанным функционалом. 
-Итог: у меня всё (не сразу), но получилось и я хочу поделиться данным творением с вами, дорогие камрады!
+In September this year, I decided to sign up for Future Code in order to gain knowledge of the Python language. Alas, after a very long period of time (until October), 
+after filling out all the paperwork and so on, we were told that because of two, pardon the expression, morons who didn't get something and somewhere 
+in time to fill out and pass, had to cancel this program in my technical school. I was not really upset, on the contrary, it even gave me a good impetus. 
+to learn this programming language on my own at home, as I did with all previous languages :) My last projects were 
+video games, so this time I decided to write something more serious, namely a CPU emulator, specifically [Intel 4004](https://en.wikipedia.org/wiki/Intel_4004) with very reduced functionality. 
+Bottom line: I got it all (not at once), but it worked and I want to share this creation with you, dear comrades!
 
-## О самом эмуляторе
+## About the emulator
 
-Эмулятор имеет 256 байт памяти, в которые сохраняются результаты программ. 
+The emulator has 256 bytes of memory into which program results are stored.
 
-Имеется Аккумулятор (acc) — регистр процессора, в котором сохраняются результаты выполнения арифметических и логических команд, 
-а также Счётчик команд (pc) - регистр процессора, который указывает, какую команду нужно выполнять следующей. 
+There is the Accumulator (acc), a processor register in which the results of arithmetic and logical instructions are stored, 
+and the instruction counter (pc), a processor register that indicates which instruction to execute next.
 
-Для составления программ используется опкод — часть машинного языка, называемая инструкцией и определяющая операцию, которая 
-должна быть выполнена. Вот таблица опкодов и соответствующая им операция:
+An opcode, a piece of machine language called an instruction that defines the operation that to be performed. 
+Here is a table of opcodes and their corresponding operation:
 
-|Опкод |Операция                       |
-|------|-------------------------------|
-|`0x00`|Остановка программы            |
-|`0xA2`|Загрузка числа в аккумулятор   |
-|`0xA4`|Загрузка числа в регистр 0     |
-|`0x58`|Сложение                       |
-|`0x29`|Вычитание                      |
-|`0x16`|Логическая операция И          |
-|`0x08`|Логическая операция ИЛИ        |
-|`0xD0`|Сохранение результата в памяти |
+|Opcode |Operation                                                             |
+|------|-----------------------------------------------------------------------|
+|`0x0`|No Operation                                                            |
+|`0x6`|Increment index register                                                |
+|`0x7`|Increment index register skip if zero                                   |
+|`0x8`|Add index register to accumulator with carry                            |
+|`0x9`|Subtract index register to accumulator with borrow                      |
+|`0xA`|Load index register to Accumulator                                      |
+|`0xB`|Exchange index register and accumulator                                 |
 
-### Как составляется программа?
+### How is the program set up?
 
-Программу надо составлять прямо в коде, а конкретно в [program.py](https://github.com/YuraFX/i4004-py/blob/main/program.py). 
-Вот пример программы сложения чисел 5 и 3:
+You should make the program directly in the code, specifically in [program.py](https://github.com/YuraFX/i4004-py/blob/main/src/program.py). 
+Here is an example program where the number 5 is subtracted from the number 12 and then the number 2 is added:
 
 ```
-program = [   
-    0xA2, 0x05,
-    0xA4, 0x03,
-    0x58,
-    0xD0, 0x10,
-    0x00,
-]
+cpu.memory[0x10] = 12
+cpu.memory[0x11] = 5
+cpu.memory[0x12] = 2
+
+cpu.LD(0x10)
+cpu.SUB(0x11)
+cpu.ADD(0x12)
+cpu.NOP()
 ```
 
-## Дополнительный материал
+## Additional material
 
 [Intel 4004 datasheet](https://archive.org/download/intel-4004/intel-4004.pdf)
 
-## О лицензии
+## About license
 
 <img src="https://www.gnu.org/graphics/gplv3-with-text-136x68.png" width="160" align="right">
 
-Это [свободная программа](https://www.gnu.org/philosophy/free-sw.html): вы можете перераспространять ее и/или изменять ее на 
-условиях [Стандартной общественной лицензии GNU](https://www.gnu.org/licenses/gpl-3.0.html) в том виде, 
-в каком она была опубликована [Фондом свободного программного обеспечения](https://www.fsf.org/); либо версии 3 лицензии, либо (по вашему выбору) любой более поздней версии.
+This program is [free software](https://www.gnu.org/philosophy/free-sw.en.html): you can redistribute it and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html) as published by the [Free Software Foundation](https://www.fsf.org/), either version 3 of the License, or (at your option) any later version.
 
-Эта программа распространяется в надежде, что она будет полезной, но БЕЗО ВСЯКИХ ГАРАНТИЙ; даже без неявной гарантии 
-ТОВАРНОГО ВИДА или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННЫХ ЦЕЛЕЙ. Подробнее см. в Стандартной общественной лицензии GNU.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-Вы должны были получить [копию](https://github.com/YuraFX/i4004-py/blob/main/LICENSE) Стандартной общественной лицензии GNU вместе с этой программой. Если это не так, см. <https://www.gnu.org/licenses/>.
+You should have received a [copy](https://github.com/YuraFX/i4004-py/blob/main/LICENSE) of the GNU General Public License along with this program. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/licenses.en.html).
