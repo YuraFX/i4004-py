@@ -1,6 +1,8 @@
 <p align="center"><img src="https://github.com/YuraFX/i4004-py/blob/main/images/4004.png?raw=true" width="360"></p>
 <h1 align="center">Intel 4004 emulator with very reduced functionality</h1>
 
+![donate](https://github.com/YuraFX/i4004-py/blob/main/images/donation_alerts.png?raw=true) [Financial support](https://www.donationalerts.com/r/yura_fx)
+
 ## Introduction
 
 In September this year, I decided to sign up for Future Code in order to gain knowledge of the Python language. Alas, after a very long period of time (until October), 
