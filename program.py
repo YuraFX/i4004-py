@@ -11,21 +11,25 @@
 # You should have received a copy of the GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-print("Эмулятор Intel 4004 с очень урезанным функционалом")
-print("Автор эмулятора: Конышев Юрий aka Yura_FX (2023 г.)")
+print('Intel 4004 emulator with very reduced functionality')
+print(' Emulator author: Konyshev Yuri aka Yura_FX (2024) ')
 
-from i4004 import memory
-from i4004 import I4004
+from cpu import CPU
 
-program = [         # Программа сложения чисел 5 и 3
-    0xA2, 0x05,
-    0xA4, 0x03,
-    0x58,
-    0xD0, 0x10,
-    0x00,
-]
+cpu = CPU()
 
-cpu = I4004(program, memory)
-cpu.run()
+# Write the numbers 12, 5 and 2 to memory at arbitrary addresses (e.g. 0x10, 0x11 and 0x12)
+cpu.memory[0x10] = 12
+cpu.memory[0x11] = 5
+cpu.memory[0x12] = 2
 
-print(f"Результат: {memory[0x10]}")
+# Execute the commands to subtract the numbers 12 and 5, and then add the number 2 to the resulting number
+cpu.LD(0x10)
+cpu.SUB(0x11)
+cpu.ADD(0x12)
+cpu.NOP()
+
+# The result of the program will be stored in the accumulator
+print('')
+print(f'  Result: {cpu.acc}')
+print('')
