@@ -27,6 +27,28 @@ class CPU:
     def NOP(self):
         self.pc += 1
 
+    # JCN instruction (Jump conditional)
+    def JCN(self, address):
+        if self.acc != 0:
+            self.pc = address
+        else:
+            self.pc += 2
+
+    # FIM instruction (Fetched immediate from ROM)
+    def FIM(self, data):
+        self.acc = data
+        self.pc += 2
+
+    # JUN instruction (Jump unconditional)
+    def JUN(self, address):
+        self.pc = address
+
+    # JMS instruction (Jump to Subroutine)
+    def JMS(self, address):
+        self.memory[self.memory[255]] = self.pc + 2
+        self.memory[255] = (self.memory[255] - 1) % 256
+        self.pc = address
+
     # INC instruction (Increment index register)
     def INC(self):
         self.acc = (self.acc + 1) % 256
@@ -70,6 +92,22 @@ class CPU:
             # NOP instruction opcode
             if opcode == 0x0:
                 self.NOP()
+
+            # JCN instruction opcode
+            elif opcode == 0x1:
+                self.JCN(self.memory[self.pc + 1])
+
+            # FIM instruction opcode
+            elif opcode == 0x2:
+                self.FIM(self.memory[self.pc + 1])
+
+            # JUN instruction opcode
+            elif opcode == 0x4:
+                self.JUN(self.memory[self.pc + 1])
+
+            # JMS instruction opcode
+            elif opcode == 0x5:
+                self.JMS(self.memory[self.pc + 1])
 
             # INC instruction opcode
             elif opcode == 0x6:
