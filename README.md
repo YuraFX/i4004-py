@@ -25,6 +25,10 @@ Here is a table of opcodes and their corresponding operation:
 |Opcode |Operation                                                             |
 |------|-----------------------------------------------------------------------|
 |`0x0`|No Operation                                                            |
+|`0x1`|Jump conditional                                                        |
+|`0x2`|Fetched immediate from ROM                                              |
+|`0x4`|Jump unconditional                                                      |
+|`0x5`|Jump to Subroutine                                                      |
 |`0x6`|Increment index register                                                |
 |`0x7`|Increment index register skip if zero                                   |
 |`0x8`|Add index register to accumulator with carry                            |
