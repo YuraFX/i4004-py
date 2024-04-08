@@ -23,6 +23,9 @@ class CPU:
         # program counter
         self.pc = 0
 
+        # carry flag
+        self.carry = 0
+
     # NOP instruction (No Operation)
     def NOP(self):
         self.pc += 1
@@ -85,6 +88,28 @@ class CPU:
         self.memory[address] = temp
         self.pc += 2
 
+    # BBL instruction (Branch back and load data to the accumulator)
+    def BBL(self):
+        self.pc = self.memory[self.memory[255]]
+        self.acc = self.memory[self.memory[255] + 1]
+        self.memory[255] = (self.memory[255] + 2) % 256
+
+    # LDM instruction (Load Data to Accumulator)
+    def LDM(self, data):
+        self.acc = data
+        self.pc += 2
+
+    # CLB instruction (Clear both)
+    def CLB(self):
+        self.acc = 0
+        self.carry = 0
+        self.pc += 1
+
+    # CLC instruction (Clear carry)
+    def CLC(self):
+        self.carry = 0
+        self.pc += 1
+
     def run(self):
         while self.pc < len(self.memory):
             opcode = self.memory[self.pc]
@@ -132,6 +157,24 @@ class CPU:
             # XCH instruction opcode
             elif opcode == 0xB:
                 self.XCH(self.memory[self.pc + 1])
+
+            # BBL instruction opcode
+            elif opcode == 0xC:
+                self.BBL()
+
+            # LDM instruction opcode
+            elif opcode == 0xD:
+                self.LDM(self.memory[self.pc + 1])
+
+            elif opcode == 0xF:
+
+                # CLB instruction opcode
+                if opcode == 0x0:
+                    self.CLB()
+
+                # CLC instruction opcode
+                elif opcode == 0x1:
+                    self.CLC()
 
             else:
                 print('Unknown opcode!!!')
