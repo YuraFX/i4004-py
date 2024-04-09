@@ -5,36 +5,43 @@
 
 ## Introduction
 
-In September this year, I decided to sign up for Future Code in order to gain knowledge of the Python language. Alas, after a very long period of time (until October), 
+In September 2023, I decided to sign up for Future Code in order to gain knowledge of the Python language. Alas, after a very long period of time (until October), 
 after filling out all the paperwork and so on, we were told that because of two, pardon the expression, morons who didn't get something and somewhere 
 in time to fill out and pass, had to cancel this program in my technical school. I was not really upset, on the contrary, it even gave me a good impetus. 
 to learn this programming language on my own at home, as I did with all previous languages :) My last projects were 
 video games, so this time I decided to write something more serious, namely a CPU emulator, specifically [Intel 4004](https://en.wikipedia.org/wiki/Intel_4004) with very reduced functionality. 
 Bottom line: I got it all (not at once), but it worked and I want to share this creation with you, dear comrades!
 
+As of April 2024, the emulator has been rewritten from scratch and is currently under active development.
+
 ## About the emulator
 
 The emulator has 256 bytes of memory into which program results are stored.
 
 There is the Accumulator (acc), a processor register in which the results of arithmetic and logical instructions are stored, 
-and the instruction counter (pc), a processor register that indicates which instruction to execute next.
+program counter (pc), a processor register that indicates which instruction to execute next, and a carry flag (carry) that indicates 
+the occurrence of a one as a result of an arithmetic operation.
 
 An opcode, a piece of machine language called an instruction that defines the operation that to be performed. 
 Here is a table of opcodes and their corresponding operation:
 
-|Opcode |Operation                                                             |
-|------|-----------------------------------------------------------------------|
-|`0x0`|No Operation                                                            |
-|`0x1`|Jump conditional                                                        |
-|`0x2`|Fetched immediate from ROM                                              |
-|`0x4`|Jump unconditional                                                      |
-|`0x5`|Jump to Subroutine                                                      |
-|`0x6`|Increment index register                                                |
-|`0x7`|Increment index register skip if zero                                   |
-|`0x8`|Add index register to accumulator with carry                            |
-|`0x9`|Subtract index register to accumulator with borrow                      |
-|`0xA`|Load index register to Accumulator                                      |
-|`0xB`|Exchange index register and accumulator                                 |
+|Opcode|Operation                                                               |
+|------|------------------------------------------------------------------------|
+|`0x0` |No Operation                                                            |
+|`0x1` |Jump conditional                                                        |
+|`0x2` |Fetched immediate from ROM                                              |
+|`0x4` |Jump unconditional                                                      |
+|`0x5` |Jump to Subroutine                                                      |
+|`0x6` |Increment index register                                                |
+|`0x7` |Increment index register skip if zero                                   |
+|`0x8` |Add index register to accumulator with carry                            |
+|`0x9` |Subtract index register to accumulator with borrow                      |
+|`0xA` |Load index register to Accumulator                                      |
+|`0xB` |Exchange index register and accumulator                                 |
+|`0xC` |Branch back and load data to the accumulator                            |
+|`0xD` |Load Data to Accumulator                                                |
+|`0xF0`|Clear both                                                              |
+|`0xF1`|Clear carry                                                             |
 
 ### How is the program set up?
 
