@@ -110,6 +110,28 @@ class CPU:
         self.carry = 0
         self.pc += 1
 
+    # IAC instruction (Increment accumulator)
+    def IAC(self):
+        self.acc = (self.acc + 1) & 0xFF
+        self.pc += 1
+
+    # CMC instruction (Complement carry)
+    def CMC(self):
+        self.carry = 1 if self.carry == 0 else 0
+        self.pc += 1
+
+    # CMA instruction (Complement Accumulator)
+    def CMA(self):
+        self.acc = ~self.acc & 0xFF
+        self.pc += 1
+
+    # RAL instruction (Rotate left)
+    def RAL(self):
+        temp = (self.acc << 1) + self.carry
+        self.carry = (self.acc & 0x80) >> 7
+        self.acc = temp & 0xFF
+        self.pc += 1
+
     def run(self):
         while self.pc < len(self.memory):
             opcode = self.memory[self.pc]
@@ -175,6 +197,22 @@ class CPU:
                 # CLC instruction opcode
                 elif opcode == 0x1:
                     self.CLC()
+
+                # IAC instruction opcode
+                elif opcode == 0x2:
+                    self.IAC()
+
+                # CMC instruction opcode
+                elif opcode == 0x3:
+                    self.CMC()
+
+                # CMA instruction opcode
+                elif opcode == 0x4:
+                    self.CMA()
+
+                # RAL instruction opcode
+                elif opcode == 0x5:
+                    self.RAL()
 
             else:
                 print('Unknown opcode!!!')
