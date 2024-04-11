@@ -42,6 +42,14 @@ Here is a table of opcodes and their corresponding operation:
 |`0xD` |Load Data to Accumulator                                                |
 |`0xF0`|Clear both                                                              |
 |`0xF1`|Clear carry                                                             |
+|`0xF2`|Increment accumulator                                                   |
+|`0xF3`|Complement carry                                                        |
+|`0xF4`|Complement Accumulator                                                  |
+|`0xF5`|Rotate left                                                             |
+|`0xF6`|Rotate right                                                            |
+|`0xF7`|Transmit carry and clear                                                |
+|`0xF8`|decrement accumulator                                                   |
+|`0xF9`|Transfer carry subtract                                                 |
 
 ### How is the program set up?
 
