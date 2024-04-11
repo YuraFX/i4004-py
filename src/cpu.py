@@ -132,6 +132,30 @@ class CPU:
         self.acc = temp & 0xFF
         self.pc += 1
 
+    # RAR instruction (Rotate right)
+    def RAR(self):
+        lsb = self.acc & 1
+        self.acc >>= 1
+        self.acc |= self.carry << 7
+        self.carry = lsb
+        self.pc += 1
+
+    # TCC instruction (Transmit carry and clear)
+    def TCC(self):
+        self.acc = self.carry
+        self.carry = 0
+        self.pc += 1
+
+    # DAC instruction (decrement accumulator)
+    def DAC(self):
+        self.acc = (self.acc - 1) & 0xFF
+        self.pc += 1
+
+    # TCS instruction (Transfer carry subtract)
+    def TCS(self):
+        self.acc = (self.acc - 1) & 0xFF if self.carry else self.acc
+        self.pc += 1
+
     def run(self):
         while self.pc < len(self.memory):
             opcode = self.memory[self.pc]
@@ -213,6 +237,22 @@ class CPU:
                 # RAL instruction opcode
                 elif opcode == 0x5:
                     self.RAL()
+
+                # RAR instruction opcode
+                elif opcode == 0x6:
+                    self.RAR()
+
+                # TCC instruction opcode
+                elif opcode == 0x7:
+                    self.TCC()
+
+                # DAC instruction opcode
+                elif opcode == 0x8:
+                    self.DAC()
+
+                # TCS instruction opcode
+                elif opcode == 0x9:
+                    self.TCS()
 
             else:
                 print('Unknown opcode!!!')
