@@ -50,6 +50,8 @@ Here is a table of opcodes and their corresponding operation:
 |`0xF7`|Transmit carry and clear                                                |
 |`0xF8`|decrement accumulator                                                   |
 |`0xF9`|Transfer carry subtract                                                 |
+|`0xFA`|Set carry                                                               |
+|`0xFB`|Decimal adjust accumulator                                              |
 
 ### How is the program set up?
 
