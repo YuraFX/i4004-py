@@ -156,6 +156,19 @@ class CPU:
         self.acc = (self.acc - 1) & 0xFF if self.carry else self.acc
         self.pc += 1
 
+    # STC instruction (Set carry)
+    def STC(self):
+        self.carry = 1
+        self.pc += 1
+
+    # DAA instruction (Decimal adjust accumulator)
+    def DAA(self):
+        self.acc += 6
+        if self.acc >= 10:
+            self.acc -= 10
+            self.carry = 1
+        self.pc += 1
+
     def run(self):
         while self.pc < len(self.memory):
             opcode = self.memory[self.pc]
@@ -253,6 +266,14 @@ class CPU:
                 # TCS instruction opcode
                 elif opcode == 0x9:
                     self.TCS()
+
+                # STC instruction opcode
+                elif opcode == 0xA:
+                    self.STC()
+
+                # DAA instruction opcode
+                elif opcode == 0xB:
+                    self.DAA()
 
             else:
                 print('Unknown opcode!!!')
