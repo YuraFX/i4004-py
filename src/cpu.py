@@ -42,6 +42,17 @@ class CPU:
         self.acc = data
         self.pc += 2
 
+    # FIN instruction (Fetch indirect from ROM)
+    def FIN(self):
+        indirectAddress = self.memory[self.pc + 1]
+        self.acc = self.memory[indirectAddress]
+        self.pc += 2
+
+    # JIN instruction (Jump indirect)
+    def JIN(self):
+        indirectAddress = self.memory[self.pc + 1]
+        self.pc = self.memory[indirectAddress]
+
     # JUN instruction (Jump unconditional)
     def JUN(self, address):
         self.pc = address
@@ -184,6 +195,14 @@ class CPU:
             # FIM instruction opcode
             elif opcode == 0x2:
                 self.FIM(self.memory[self.pc + 1])
+
+            # FIN instruction opcode
+            elif opcode == 0x3:
+                self.FIN()
+
+                # JIN instruction opcode
+                if opcode == 0x1:
+                    self.JIN()
 
             # JUN instruction opcode
             elif opcode == 0x4:
