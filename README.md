@@ -1,5 +1,5 @@
 <p align="center"><img src="https://github.com/YuraFX/i4004-py/blob/main/images/4004.png?raw=true" width="360"></p>
-<h1 align="center">Intel 4004 emulator with very reduced functionality</h1>
+<h1 align="center">Intel 4004 emulator</h1>
 
 ![donate](https://github.com/YuraFX/i4004-py/blob/main/images/donation_alerts.png?raw=true) [Financial support](https://www.donationalerts.com/r/yura_fx)
 
@@ -57,23 +57,17 @@ Here is a table of opcodes and their corresponding operation:
 
 ### How is the program set up?
 
-You should make the program directly in the code, specifically in [program.py](https://github.com/YuraFX/i4004-py/blob/main/src/program.py). 
 Here is an example program where the number 5 is subtracted from the number 12 and then the number 2 is added:
 
-```
-cpu.memory[0x10] = 12
-cpu.memory[0x11] = 5
-cpu.memory[0x12] = 2
-
-cpu.LD(0x10)
-cpu.SUB(0x11)
-cpu.ADD(0x12)
-cpu.NOP()
-```
+![test](images/test.png)
 
 ## Additional material
 
 [Intel 4004 datasheet](https://archive.org/download/intel-4004/intel-4004.pdf)
+
+## Installation
+
+[Download](https://github.com/YuraFX/i4004-py/releases/tag/1.0) ![windows](images/windows.png)Windows version in release.
 
 ## About license
 
