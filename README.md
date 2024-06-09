@@ -1,5 +1,5 @@
 <p align="center"><img src="https://github.com/YuraFX/i4004-py/blob/main/images/4004.png?raw=true" width="360"></p>
-<h1 align="center">Intel 4004 emulator</h1>
+<h1 align="center">Intel 4004 CPU Emulator</h1>
 
 ![donate](https://github.com/YuraFX/i4004-py/blob/main/images/donation_alerts.png?raw=true) [Financial support](https://www.donationalerts.com/r/yura_fx)
 
@@ -61,13 +61,13 @@ Here is an example program where the number 5 is subtracted from the number 12 a
 
 ![test](images/test.png)
 
-## Additional material
-
-[Intel 4004 datasheet](https://archive.org/download/intel-4004/intel-4004.pdf)
-
 ## Installation
 
 [Download](https://github.com/YuraFX/i4004-py/releases/tag/1.0) ![windows](images/windows.png)Windows version in release.
+
+## Additional material
+
+[Intel 4004 datasheet](https://archive.org/download/intel-4004/intel-4004.pdf)
 
 ## About license
 
