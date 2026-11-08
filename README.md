@@ -236,8 +236,73 @@ The project comes with comprehensive documentation. Whether you are just startin
 
 ## Installation
 
-	Work In Progress
-	
+### <img src="docs/icons/windows.png" width="20" height="20" alt="windows"> Windows (x64 only)
+
+Download the [latest version](https://github.com/YuraFX/i4004-py/releases/download/1.0/i4004-py-v1.0-windows-x64.zip)
+
+### <img src="docs/icons/debian.png" width="20" height="20" alt="debian"> Debian, <img src="docs/icons/ubuntu.png" width="20" height="20" alt="ubuntu"> Ubuntu and other Debian-based Linux distributions
+
+All steps are performed in a terminal. System package installation may require superuser privileges (`sudo`). Debian and Ubuntu use the same package manager, so the commands are identical on both distributions.
+
+**1. Check Python 3**
+
+The project requires a Python 3 interpreter. Check whether it is installed:
+   ```bash
+   python3 --version
+   ```
+
+If the command prints a version (for example, `Python 3.10.12`), you are good to go. If the terminal reports that the command was not found, install Python:
+   ```bash
+   sudo apt update
+   sudo apt install python3
+   ```
+
+**2. Check for Tkinter**
+
+Tkinter is part of the standard library, but on Debian and Ubuntu it is often shipped as a separate package. Check whether it is available:
+   ```bash
+   python3 -c "import tkinter; print('Tkinter is available')"
+   ```
+
+If you see `Tkinter is available`, move on to the next step. If you get `ModuleNotFoundError: No module named 'tkinter'`, install the package:
+   ```bash
+   sudo apt update
+   sudo apt install python3-tk
+   ```
+
+This is the official package name on Debian and Ubuntu.
+
+**3. Install Git (if not already installed)**
+
+You need Git to clone the repository. Check whether it is installed:
+   ```bash
+   git --version
+   ```
+
+If Git is missing, install it:
+   ```bash
+   sudo apt install git
+   ```
+
+**4. Clone the repository**
+   ```bash
+   git clone https://github.com/YuraFX/i4004-py.git
+   ```
+
+**5. Change to the source directory**
+
+The entry point lives in the `src` subfolder:
+   ```bash
+   cd i4004-py/src
+   ```
+
+**6. Run the emulator**
+   ```bash
+   python3 main.py
+   ```
+
+The emulator's graphical interface opens after this command.
+
 ## References
 
 ### 🧭 1. Inspiration & Starting Point
