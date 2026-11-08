@@ -240,7 +240,57 @@ The project comes with comprehensive documentation. Whether you are just startin
 	
 ## References
 
-	Work In Progress
+### 🧭 1. Inspiration & Starting Point
+
+* **[markablov/i40xx — JavaScript Intel 4004/4040 Emulator](https://github.com/markablov/i40xx)**: The architectural reference and primary source of inspiration for the Python port.
+
+### 📚 2. Documentation & MCS-4 Specifications
+
+* **[MCS-4 Users Manual (Feb 1973)](./docs/MCS-4-Users-Manual-(Feb-1973).pdf)**: Full text of the official user manual.
+
+* **[MCS-4 Data Sheet (Nov 1971)](./docs/MCS-4-Data-Sheet-(Nov-1971).pdf)**: Brief specification of electrical parameters and pin assignments.
+
+### 🔌 3. Peripherals (4003, TIA, Teletype, UART, Disk Drive)
+
+* **Intel 4003 Shift Register**
+
+	* **[Insanity 4004 — The i4003 Shift Register](https://insanity4004.blogspot.com/2020/05/the-i4003-shift-register.html)**: Analysis of 4003 emulation, including timing and clocking considerations.
+
+* **Atari TIA (Television Interface Adaptor)**
+
+	* **[Atari 2600 TIA Hardware Notes (Andrew Towers)](./docs/Atari-2600-TIA-Hardware-Notes-(Andrew-Towers).pdf)**: The definitive document on TIA timings and registers.
+
+* **Teletype Model 33 ASR**
+
+	* **[Teletype Model 33 (Wikipedia)](https://en.wikipedia.org/wiki/Teletype_Model_33)**: General history, variants (ASR, KSR, RO), and overview of the device.
+
+	* **[Using the ASR 33 Teletype](./docs/Using-the-ASR-33-Teletype.pdf)**: A practical guide to using the ASR-33 terminal.
+
+* **UART AY-5-1013**
+
+	* **[AY-5-1013 Datasheet](./docs/AY-5-1013.pdf)**: Specification: 5–8 data bits, 1–2 stop bits, up to 40 kbps.
+
+* **Shugart SA 800 / IBM 3740**
+
+	* **[Shugart SA800-801 OEM Manual](./docs/Shugart-SA800-801-OEM-Manual.pdf)**: Original OEM manual with complete specifications, electrical interface, and descriptions of read/write operations.
+
+	* **[IBM 3740 Data Entry System Reference Manual (GA21-9151-0)](./docs/IBM-3740-Data-Entry-System-Reference-Manual-(GA21-9151-0).pdf)**: The original IBM documentation defining the physical and logical layout of the 8-inch diskette format (77 tracks, 26 sectors per track, 128 bytes per sector).
+
+### 🧮 4. Tiny BASIC
+
+* **[pvmm/tinybasic — Palo Alto Tiny BASIC v3](https://github.com/pvmm/tinybasic)**: Source code of Palo Alto Tiny BASIC v3 by Li-Chen Wang (8080/Z-80, ~2K memory).
+
+* **[Palo Alto Tiny BASIC Version 3 Li-Chen Wang 1977](https://archive.org/details/Palo_Alto_Tiny_BASIC_Version_3_Li-Chen_Wang_1977)**: Original publication and source code.
+
+### ⚙️ 5. Assembler
+
+* **[Intel 4004 assembler documentation](https://davkhun.github.io/i4004/docs.html)**: Implementation features and instruction set reference (register pairs, RAM banking, and usage examples).
+
+* **[i40xx-asm (npm)](https://npm.io/package/i40xx-asm)**: Assembler for 4004/4040, with examples of `#` comments and `:` labels.
+
+### 🖥️ 6. MCS-4 System Monitor
+
+* **[Retrotechnology — Intel MCS 4/40 ROM Monitor MON4](https://www.retrotechnology.com/restore/intel440_roms.html)**: Dumps, disassembly, and listing of MON4 V2.1.
 
 ## License
 
