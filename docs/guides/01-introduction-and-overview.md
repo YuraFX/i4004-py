@@ -55,7 +55,7 @@ Now for the fun part. We assume you have cloned the project and followed the set
 
 ### Step 1: Open the example
 
-In the `examples/` folder (or wherever your project keeps sample code), find `hello.asm`. Open it in the code editor: click **Open** and select the file. You will see a short program that prints a greeting on the teletype.
+In the `tests/` folder (or wherever your project keeps sample code), find `tty_hello.asm`. Open it in the code editor: click **Open** and select the file. You will see a short program that prints a greeting on the teletype.
 
 ### Step 2: Build
 
