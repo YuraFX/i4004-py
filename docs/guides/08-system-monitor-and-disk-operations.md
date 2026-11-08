@@ -284,8 +284,7 @@ Suppose you want to look at memory from `0x10` and change the first cell to `A`.
 ```text
 > D 10
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-> S 10
-> A
+> S 10 A
 A
 > D 10
 A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
