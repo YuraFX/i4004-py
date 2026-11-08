@@ -13,7 +13,7 @@ The goal of the project is not merely to preserve historical heritage, but to ma
 
 ## Accuracy and Testing
 
-The emulator reproduces Intel 4004 behavior at the instruction level. To ensure functional accuracy and verify that all 46 instructions operate exactly as documented in Intel's 1971 manuals, we have included a comprehensive suite of assembly tests.
+The emulator reproduces Intel 4004 behavior at the instruction level. To ensure functional accuracy and verify that all 46 instructions operate exactly as documented in Intel's 1971 manuals, I have included a comprehensive suite of assembly tests.
 
 These tests validate CPU flags, arithmetic edge cases, stack behavior, and peripheral I/O. Below are the core validation tests included in the `tests/` directory.
 
@@ -167,7 +167,7 @@ Below is a working prototype written in 4004 assembly (`tetris.asm`), which perf
 
 *   **The "Illusion" of a Well:** Because the 4004 lacks sufficient RAM for a 2D array, the game can only remember the coordinates of the *single most recently landed block* (stored in registers `R12` and `R13`). If you drop a second block, the coordinates of the first are overwritten. It plays more like "dodge the obstacle" than a full Tetris tower.
 
-*   **Register Mastery:** The author brilliantly uses `R0`/`R1` for the active block, `R6`/`R7` as working coordinates for the drawing subroutines, and `R2`/`R3` for temporary math—all without clashing.
+*   **Register Mastery:** I brilliantly uses `R0`/`R1` for the active block, `R6`/`R7` as working coordinates for the drawing subroutines, and `R2`/`R3` for temporary math—all without clashing.
 
 ### The Critical Flaw (The Bug)
 
@@ -184,7 +184,7 @@ When you press a movement key, the code makes the following nested subroutine ca
 
 Because the 4004 hardware stack only holds three 12-bit return addresses, the 4th call overwrites the address of the 1st. When the emulator tries to execute `BBL` (Return), it jumps back to an entirely wrong place in memory.
 
-*(Note: We do not patch this behavior in the emulator. It strictly reproduces the hardware stack, allowing you to experience the exact same architectural headaches engineers faced in 1971).*
+*(Note: I do not patch this behavior in the emulator. It strictly reproduces the hardware stack, allowing you to experience the exact same architectural headaches engineers faced in 1971).*
 
 ### Why include a "broken" game?
 
@@ -192,7 +192,7 @@ This prototype is a beautiful educational artifact. It shows that on the Intel 4
 
 ## Ecosystem: The Built-in System Monitor
 
-To demonstrate the emulator's capabilities beyond simple tests, we have included a complete, interactive **System Monitor** (a mini-OS). It is written entirely in Intel 4004 assembly and runs inside the emulator, providing a command-line interface for memory inspection, editing, and disk operations.
+To demonstrate the emulator's capabilities beyond simple tests, I have included a complete, interactive **System Monitor** (a mini-OS). It is written entirely in Intel 4004 assembly and runs inside the emulator, providing a command-line interface for memory inspection, editing, and disk operations.
 
 <div align="center">
   <img src="./docs/screenshots/mcs-4_system_monitor.PNG" alt="MCS-4 System Monitor" width="500">
@@ -208,7 +208,7 @@ The monitor is split into several logical modules (`monitor.asm`, `console_io.as
 
 *   **Hex Conversion on the Fly:** The 4004 has no native string manipulation. The `MON_PUT_HEX_NIB` routine converts 4-bit numbers into ASCII characters (`0`-`9`, `A`-`F`) using clever manipulation of the Carry flag.
 
-*   **Modernized Data Storage:** While the original Intel MCS-4 monitor used paper tape for loading programs, our adaptation replaces it with full **Shugart SA 800-1 floppy disk** support. The `R` (Read) and `W` (Write) commands handle complex disk positioning (`HOME`), sector selection, and 128-byte data transfers.
+*   **Modernized Data Storage:** While the original Intel MCS-4 monitor used paper tape for loading programs, my adaptation replaces it with full **Shugart SA 800-1 floppy disk** support. The `R` (Read) and `W` (Write) commands handle complex disk positioning (`HOME`), sector selection, and 128-byte data transfers.
 
 *   **Indirect Jumps:** The `G` (Go) command, which transfers control to a user program, demonstrates the classic 4004 way of indirect jumping: it parses the address into `R0:R1` (Pair `P0`) and executes `JIN P0`.
 
