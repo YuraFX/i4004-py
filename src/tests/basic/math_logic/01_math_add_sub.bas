@@ -1,0 +1,6 @@
+10 LET A = 5
+20 LET B = 3
+30 LET C = A + B
+40 LET D = C - 2
+50 PRINT D
+60 END

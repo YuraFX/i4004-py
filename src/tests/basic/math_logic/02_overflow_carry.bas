@@ -1,0 +1,5 @@
+10 LET A = 15
+20 LET B = 2
+30 LET C = A + B
+40 PRINT C
+50 END
